@@ -1,0 +1,82 @@
+header {
+  background-color: var(--footer);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+.logo {
+  margin-left: 70px;
+  width: 40px;
+  height: 40px;
+}
+.menu {
+  display: flex;
+  a:not(:last-child) {
+    margin-right: 50px;
+  }
+  a:hover {
+    color: var(--orange);
+    transition: all 0.4s ease;
+  }
+}
+
+.account {
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--orange);
+  }
+  svg:hover {
+    fill: var(--white);
+    transition: all 0.4s ease;
+  }
+}
+.favorite {
+  position: relative;
+  .countFavorite {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--orange);
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+  }
+  span {
+    position: absolute;
+    top: 1px;
+    left: 5px;
+  }
+}
+.cart {
+  position: relative;
+  .countCart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--orange);
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    align-items: center;
+  }
+  span {
+    position: absolute;
+    top: 1px;
+    left: 5px;
+  }
+}

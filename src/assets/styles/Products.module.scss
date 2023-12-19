@@ -1,0 +1,138 @@
+.cart {
+  background-color: #eeee;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 50px 0;
+  h3 {
+    color: var(--title);
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+}
+
+.categories {
+  display: inline-flex;
+  justify-content: center;
+  border-radius: 44px;
+  background: #c0bcbcee;
+  column-gap: 15px;
+  padding: 10px;
+  margin-bottom: 50px;
+
+  .but {
+    display: flex;
+    a {
+      color: var(--title);
+      font-size: 18px;
+      border-radius: 44px;
+      padding: 5px 10px;
+      transition: all 0.3 ease;
+    }
+    a:hover {
+      background-color: var(--orange);
+      transition: all 0.3 ease;
+      font-weight: 500;
+      color: #fff;
+    }
+  }
+}
+
+.products {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffff;
+  border-radius: 20px;
+  max-width: 268px;
+  
+  
+
+  .imagesContainer {
+    width: 100%;
+    height: 280px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    
+    
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    font-size: 18px;
+    font-weight: 400;
+    color: #8d8d8d;
+
+    .title {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 25px;
+      color: #0d1b39;
+      margin: 20px 0;
+      text-align: start;
+    }
+  }
+}
+
+
+
+.buy {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 0 20px 20px 20px;
+  width: 100%;
+
+  .price {
+    font-size: 20px;
+    font-weight: 600;
+    color: #0d1b39;
+    padding-left: 20px;
+
+    svg {
+      position: absolute;
+      top: -5px;
+      left: 28px;
+      width: 9px;
+      height: 15px;
+      fill: #0d1b39;
+    }
+  }
+}
+
+.circleWrapper {
+  position: relative;
+  svg {
+    cursor: pointer;
+  }
+  svg:hover {
+    fill: var(--orange);
+    transition: all .3s ease;
+  }
+}
+// .circle {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 25px;
+//   height: 25px;
+//   background-color: #0d1b39;
+//   border-radius: 50%;
+// }
