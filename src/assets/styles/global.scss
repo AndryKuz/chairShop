@@ -1,4 +1,3 @@
-
 //        Null style
 body {
   background: var(--bg);
@@ -18,7 +17,6 @@ body {
 
 img {
   max-width: 100%;
-  
 }
 
 input,
@@ -47,7 +45,6 @@ p {
   padding: 0;
 }
 
-
 //          Wrapper
 .wrapper {
   min-height: 100vh;
@@ -66,7 +63,6 @@ footer {
   margin: 0 auto;
   padding: 0 15px;
   width: 100%;
-
 }
 
 //            Class active
@@ -77,22 +73,27 @@ footer {
   background-color: #ffff;
 }
 
-
 //          Button
 .button {
-    
+  &:hover {
+    transition: all .3s ease;
+    a {
+      color: #000;
+    }
+    svg {
+      stroke:#000;
+    }
+  }
   a {
-      color: var(--orange);
-      
+    color: var(--orange);
   }
   svg {
-      margin-left: 15px;
-      width: 39px;
-      height: 13px;
-      stroke:var(--orange);
-      cursor: pointer;
+    margin-left: 15px;
+    width: 39px;
+    height: 13px;
+    stroke: var(--orange);
+    cursor: pointer;
   }
-
 }
 
 //      Input
@@ -110,8 +111,6 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
 }
-
-
 
 // .preloader {
 //   flex-grow: 1;
@@ -138,4 +137,3 @@ input[type="number"] {
 // button:hover {
 //   background: var(--violet);
 // }
-

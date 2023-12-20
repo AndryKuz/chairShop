@@ -12,6 +12,7 @@
   }
 }
 
+
 .categories {
   display: inline-flex;
   justify-content: center;
@@ -39,21 +40,19 @@
   }
 }
 
-.products {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 40px;
-}
 .item {
   display: flex;
   flex-direction: column;
   background-color: #ffff;
   border-radius: 20px;
-  max-width: 268px;
+  width: 268px;
+  margin-bottom: 50px;
+  
   
   
 
   .imagesContainer {
+    
     width: 100%;
     height: 280px;
     border-top-left-radius: 20px;
@@ -136,3 +135,4 @@
 //   background-color: #0d1b39;
 //   border-radius: 50%;
 // }
+
