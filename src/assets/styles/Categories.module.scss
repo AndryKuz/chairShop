@@ -1,0 +1,26 @@
+.categories {
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 44px;
+    background: #c0bcbcee;
+    column-gap: 15px;
+    padding: 10px;
+    margin-bottom: 50px;
+  
+    .but {
+      display: flex;
+      a {
+        color: var(--title);
+        font-size: 18px;
+        border-radius: 44px;
+        padding: 5px 10px;
+        transition: all 0.3 ease;
+      }
+      a:hover {
+        background-color: var(--orange);
+        transition: all 0.3 ease;
+        font-weight: 500;
+        color: #fff;
+      }
+    }
+  }

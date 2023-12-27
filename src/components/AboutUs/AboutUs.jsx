@@ -1,4 +1,4 @@
-import AboutCartColumn from "../fragments/AboutCartColumn";
+import AboutCartColumn from "./AboutCartColumn";
 
 import cl from "../../assets/styles/About.module.scss";
 

@@ -20,32 +20,7 @@
   }
 }
 
-.categories {
-  display: inline-flex;
-  justify-content: center;
-  border-radius: 44px;
-  background: #c0bcbcee;
-  column-gap: 15px;
-  padding: 10px;
-  margin-bottom: 50px;
 
-  .but {
-    display: flex;
-    a {
-      color: var(--title);
-      font-size: 18px;
-      border-radius: 44px;
-      padding: 5px 10px;
-      transition: all 0.3 ease;
-    }
-    a:hover {
-      background-color: var(--orange);
-      transition: all 0.3 ease;
-      font-weight: 500;
-      color: #fff;
-    }
-  }
-}
 
 .item {
   display: flex;
@@ -93,6 +68,7 @@
 .buy {
   position: relative;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-top: auto;
   padding: 0 20px 20px 20px;
@@ -106,31 +82,12 @@
 
     svg {
       position: absolute;
-      top: -5px;
-      left: 28px;
-      width: 9px;
+      top: 0px;
+      left: 25px;
+      width: 15px;
       height: 15px;
       fill: #0d1b39;
     }
   }
 }
 
-.circleWrapper {
-  position: relative;
-  svg {
-    cursor: pointer;
-  }
-  svg:hover {
-    fill: var(--orange);
-    transition: all 0.3s ease;
-  }
-}
-// .circle {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 25px;
-//   height: 25px;
-//   background-color: #0d1b39;
-//   border-radius: 50%;
-// }
