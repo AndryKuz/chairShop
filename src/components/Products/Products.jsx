@@ -27,6 +27,7 @@ const Products = () => {
             spaceBetween={50}
             slidesPerView={4}
             navigation
+            className="my-swiper"
             
           >
             {data.map((item) => (
