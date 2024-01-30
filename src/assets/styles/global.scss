@@ -81,7 +81,7 @@ footer {
   color: var(--orange);
 }
 .activeCategory {
-  background-color: #ffff;
+  color: var(--orange);
 }
 
 //          Button
@@ -94,6 +94,7 @@ button {
 
 input {
   padding: 0;
+  color: var(--title);
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -135,4 +136,20 @@ input[type="number"] {
 .my-swiper {
   flex-grow: 1;
   width: 100%;
+  
 }
+
+//    Icons
+
+.icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  stroke:var(--orange);
+  transition: all .3s ease;
+  &:hover {
+    stroke:#fff;
+    transition: all .3s ease;
+  }
+}
+

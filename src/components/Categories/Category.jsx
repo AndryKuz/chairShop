@@ -1,17 +1,18 @@
-import Categories from "./Categories";
-import Filter from "../../components/Filter/Filter";
-import Search from "../search/Search";
+import { useSelector } from "react-redux";
 
-const Category = () => {
+import Categories from "./Categories";
+
+import cl from '../../assets/styles/Category.module.scss';
+
+const Category = ({activeCategoryId}) => {
+  const { categories } = useSelector((state) => state);
+  
   return (
-    <div>
-      <div>
-        <Filter />
-      </div>
-      <div>
-        <Search />
-        <Categories />
-      </div>
+    <div className={cl.category}>
+      
+      <Categories category={categories.list} activeCategoryId={activeCategoryId}/>
+      <input type="text" />
+      here products
     </div>
   );
 };

@@ -12,35 +12,27 @@ import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
 
+
 const Products = () => {
   const { data = [] } = useGetProductQuery();
+  
 
-  console.log(data);
   return (
     <section className={cl.products}>
       <div className={cl.containerProd}>
         <div className={cl.contentProducts}>
-          <h3>Best Selling Product</h3>
-
+{/* 
           <Swiper
             modules={[Navigation, A11y]}
             spaceBetween={50}
             slidesPerView={4}
             navigation
             className="my-swiper"
-            
           >
-            {data.map((item) => (
-              <SwiperSlide key={item.id}>
-                <Card
-                  title={item.title}
-                  name={item.category.name}
-                  image={item.images[0]}
-                  price={item.price}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+            <SwiperSlide> */}
+              <Card products={data} />
+            {/* </SwiperSlide>
+          </Swiper> */}
           <ViewAll route={ROUTES.FURNITURE} />
         </div>
       </div>
@@ -49,3 +41,14 @@ const Products = () => {
 };
 
 export default Products;
+// {data.map((item) => (
+//   <SwiperSlide key={item.id}>
+//     <Card
+//       title={item.title}
+//       name={item.category.name}
+//       image={item.images[0]}
+//       price={item.price}
+
+//     />
+//   </SwiperSlide>
+// ))}

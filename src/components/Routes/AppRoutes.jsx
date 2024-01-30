@@ -8,15 +8,17 @@ import About from '../../pages/About';
 import Contacts from '../../pages/Contacts';
 import Cart from '../../pages/Cart';
 import NotFound from '../../pages/NotFound';
+import SingleCategory from "../../pages/SingleCategory";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route index element={<Home/>}/>
       <Route path={ROUTES.ABOUT} element={<About/>}/>
-      <Route path={ROUTES.FURNITURE} element={<Furniture/>}/>
+      <Route path={ROUTES.FURNITURE} element={<SingleCategory/>}/>
       <Route path={ROUTES.CONTACTS} element={<Contacts/>}/>
-      <Route path={ROUTES.CART} element={<Cart/>}/> */
+      <Route path={ROUTES.CART} element={<Cart/>}/>
+      <Route path={ROUTES.CATEGORY} element={<SingleCategory/>}/>
       <Route path="*" element={<NotFound/>}/>
       
     </Routes>

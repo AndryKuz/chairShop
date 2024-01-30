@@ -1,0 +1,16 @@
+.products {
+    text-align: center;
+  background-color: #eeee;
+  color: var(--title);
+}
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3 {
+        font-size: 28px;
+    }
+}
+.category {
+  display: flex;
+}
