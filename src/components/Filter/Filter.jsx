@@ -11,7 +11,8 @@ const Filter = ({
   handleChange,
   handleSubmit,
   handleResetInput,
-  handleResetAll
+  handleResetAll,
+  inputRef,
 }) => {
   const noMoreFiveCategory = category.slice(0, 5);
 
@@ -46,6 +47,7 @@ const Filter = ({
             placeholder="Product name"
             value={values.title}
             autoComplete="off"
+            ref={inputRef}
           />
           <div
             className={cl.clearValueInput}
@@ -63,6 +65,7 @@ const Filter = ({
             placeholder="0"
             value={values.price_min}
             autoComplete="off"
+            
           />
           <div
             className={cl.clearValueInput}
@@ -80,6 +83,7 @@ const Filter = ({
             placeholder="0"
             value={values.price_max}
             autoComplete="off"
+            
           />
           <div
             className={cl.clearValueInput}

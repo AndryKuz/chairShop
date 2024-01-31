@@ -2,7 +2,7 @@ import Filter from "../components/Filter/Filter";
 
 import cl from "../assets/styles/SingleCategory.module.scss";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useParams } from "react-router-dom";
 import { useGetProductsQuery } from "../features/api/apiSlice";
@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 
 const SingleCategory = () => {
   const { id } = useParams();
+  const inputRef = useRef(null);
   const { list } = useSelector(({ categories }) => categories);
 
   const defaultValues = {
@@ -75,6 +76,10 @@ const SingleCategory = () => {
  const handleResetInput = (inputName) => {
   setValues({...values, [inputName]: ''});
   setParams({...params, [inputName]: ''});
+
+  if(inputRef.current) {
+    inputRef.current.focus();
+  }
  }
 
 
@@ -91,6 +96,7 @@ const SingleCategory = () => {
               handleSubmit={handleSubmit}
               handleResetInput={handleResetInput}
               handleResetAll={handleResetAll}
+              inputRef={inputRef}
            
             />
           </div>

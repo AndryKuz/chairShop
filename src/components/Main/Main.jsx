@@ -1,13 +1,41 @@
+import { useEffect, useRef, useState } from "react";
 import cl from "../../assets/styles/Main.module.scss";
 
 import { IoSearchOutline } from "react-icons/io5";
-
+import { TiDeleteOutline } from "react-icons/ti";
+import { useGetProductsQuery } from "../../features/api/apiSlice";
+import { Link } from "react-router-dom";
 
 const Main = () => {
+  const [searchValue, setSearchValue] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalRef = useRef(null);
+  const { data, isLoading } = useGetProductsQuery({ title: searchValue });
 
-  const handleChange = () => {
 
-  }
+  const handleChange = ({ target: { value } }) => {
+    setSearchValue(value);
+    // setIsModalOpen(value !== "");
+  };
+
+  const handleReset = () => {
+    setSearchValue("");
+    // setIsModalOpen(false);
+  };
+
+// const handleClickOutsideModal = (event) => {
+//   if(modalRef.current && !modalRef.current.contains(event.target)) {
+//     setIsModalOpen(false);
+//   }
+// }
+
+// useEffect(() => {
+//   document.addEventListener('mousedown', handleClickOutsideModal);
+//   return () => {
+//     document.removeEventListener('mousedown', handleClickOutsideModal);
+//   }
+// },[])
+
   return (
     <section className={cl.main}>
       <div className="container">
@@ -30,16 +58,39 @@ const Main = () => {
                 placeholder="Search furniture"
                 name="search"
                 autoComplete="off"
-                value=""
+                value={searchValue}
                 onChange={handleChange}
               />
             </div>
             <div className={cl.search}>
               <IoSearchOutline />
-              {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z" />
-              </svg> */}
             </div>
+            <div className={cl.resetSearch}>
+              <TiDeleteOutline onClick={handleReset}/>
+            </div>
+            {searchValue && (
+              <div className={cl.modalSearch} ref={modalRef}>
+                {isLoading
+                  ? "loading"
+                  : !data.length
+                  ? "no result"
+                  : data.map(({ title, images, id }) => {
+                      return (
+                        <Link
+                          className={cl.item}
+                          to={`/products/${id}`}
+                          key={id}
+                        >
+                          <div
+                            className={cl.imageSearch}
+                            style={{ backgroundImage: `url(${images[0]})` }}
+                          ></div>
+                          <div className={cl.titleSearch}>{title}</div>
+                        </Link>
+                      );
+                    })}
+              </div>
+            )}
           </form>
         </div>
       </div>

@@ -67,6 +67,7 @@ const Header = () => {
                   {list.map(({ id, name }) => (
                     <li key={id}>
                       <NavLink
+                      onClick={() => setIsModalOpen(false)}
                         className={({ isActive }) =>
                           `${cl.link} ${isActive ? cl.active : ""}`
                         }
