@@ -20,6 +20,8 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { currentUser } = useSelector(({ user }) => user);
   const { list } = useSelector((state) => state.categories);
+  const {cart, favorite} = useSelector((state) => state.user);
+
 
   const handleClick = () => {
     if (!currentUser) dispatch(toggleForm(true));
@@ -98,7 +100,7 @@ const Header = () => {
               <Link>
                 <FaRegHeart className="icon heart-icon" />
                 <div className={cl.countFavorite}>
-                  <span>0</span>
+                  <span>{favorite.length}</span>
                 </div>
               </Link>
             </div>
@@ -106,7 +108,7 @@ const Header = () => {
               <Link to={ROUTES.CART}>
                 <BsCart4 className="icon heart-icon" />
                 <div className={cl.countCart}>
-                  <span>0</span>
+                  <span>{cart.length}</span>
                 </div>
               </Link>
             </div>

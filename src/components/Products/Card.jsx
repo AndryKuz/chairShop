@@ -1,19 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { PiCurrencyDollar } from "react-icons/pi";
 
 import cl from "../../assets/styles/Card.module.scss";
 
 import ButtonDinamic from "../buttons/ButtonDinamic";
+import { ROUTES } from "../../utils/routes";
 
 const Card = ({ products = []}) => {
+
   return (
     
       <div className={cl.card}>
         {products.map((product) => (
           <div className={cl.item} key={product.id}>
             <div className={cl.imagesContainer}>
-              <Link>
+              <Link to={`/products/${product.id}`}>
                 <img src={product.images} alt={product.name} />
               </Link>
             </div>
