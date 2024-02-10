@@ -86,7 +86,7 @@ footer {
 
 //          Button
 button {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 
@@ -107,49 +107,8 @@ input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
 }
 
-// .preloader {
-//   flex-grow: 1;
-//   padding: 24px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
-
-// .cont {
-//   display: flex;
-//   flex: 1;
-//   max-height: 500px;
-// }
-// button {
-//   background: var(--violet-dark);
-//   border-radius: 6px;
-//   padding: 9px 20px;
-//   font-weight: 600;
-//   line-height: 20px;
-//   cursor: pointer;
-// }
-
-// button:hover {
-//   background: var(--violet);
-// }
-
 .my-swiper {
   flex-grow: 1;
   width: 100%;
   
 }
-
-//    Icons
-
-.icon {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  stroke:var(--orange);
-  transition: all .3s ease;
-  &:hover {
-    stroke:#fff;
-    transition: all .3s ease;
-  }
-}
-

@@ -1,11 +1,11 @@
-import { Link, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 import { PiCurrencyDollar } from "react-icons/pi";
 
 import cl from "../../assets/styles/Card.module.scss";
 
 import ButtonDinamic from "../buttons/ButtonDinamic";
-import { ROUTES } from "../../utils/routes";
+
 
 const Card = ({ products = []}) => {
 
@@ -22,13 +22,14 @@ const Card = ({ products = []}) => {
             <div className={cl.info}>
               {product.name}
               <Link className={cl.title}>{product.title}</Link>
+
             </div>
             <div className={cl.buy}>
               <div className={cl.price}>
                 <PiCurrencyDollar />
                 {product.price}
               </div>
-              <ButtonDinamic isPlus={true} />
+              <ButtonDinamic isPlus={true}  widthCircle='40px' hightCircle='40px'/>
             </div>
           </div>
         ))}

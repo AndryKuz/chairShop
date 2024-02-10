@@ -15,6 +15,10 @@ import {
 } from "../User/userSlice";
 
 import { TiDeleteOutline } from "react-icons/ti";
+import { AiFillDelete } from "react-icons/ai";
+import ButtonDinamic from "../buttons/ButtonDinamic";
+import ViewAll from "../buttons/ViewAll";
+import { ROUTES } from "../../utils/routes";
 
 const SIZES = [44, 45, 47];
 
@@ -32,7 +36,7 @@ const Product = (item) => {
   const [currentSize, setCurrentSize] = useState();
   const [modalMessage, setModalMessage] = useState("");
 
-  const closeModalCart = () => dispatch(toggleModalCart(false));
+  
 
   useEffect(() => {
     if (!images.length) return;
@@ -69,6 +73,8 @@ const Product = (item) => {
     dispatch(toggleFormFavorite(null));
     setModalMessage("");
   };
+
+  const closeModalCart = () => dispatch(toggleModalCart(null));
 
   return (
     <section className={cl.product}>
@@ -111,7 +117,7 @@ const Product = (item) => {
         <div className={cl.buttons}>
           <button
             onClick={addToCart}
-            className={cl.addToCart}
+            className={`${cl.addToCart} ${cl.generalStyle}`}
             disabled={!currentSize}
           >
             ADD TO CART
@@ -119,7 +125,7 @@ const Product = (item) => {
           {showModalCart && (
             <div className={cl.overlay}>
               <div className={cl.wrapper}>
-                <div className={cl.title}>
+                <div className={cl.titleModal}>
                   <div className={cl.close}>
                     <IoMdClose onClick={closeModalCart} />
                   </div>
@@ -133,24 +139,46 @@ const Product = (item) => {
                       </div>
                       <div className={cl.info}>
                         <div className={cl.titleProduct}>{product.title}</div>
-                        <div className={cl.size}>size:</div>
-                      <div className={cl.price}>${product.price}</div>
-                        
+                        <div className={cl.sizeModal}>size:</div>
+                        <div className={cl.priceModal}>${product.price}</div>
+                        <div className={cl.amountProduct}>
+                          <div className={cl.manegProduct}>
+                            <ButtonDinamic
+                              isPlus={false}
+                              widthCircle="20px"
+                              hightCircle="20px"
+                              svgSize="20px"
+                            />
+                            total amount
+                            <ButtonDinamic
+                              isPlus={true}
+                              widthCircle="20px"
+                              hightCircle="20px"
+                              svgSize="20px"
+                            />
+                          </div>
+                          <div className={cl.deleteProduct}>
+                            <AiFillDelete/>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className={cl.total}>
+                <div className={cl.totalModal}>
                   Grand Total <span>$ total price</span>
                 </div>
-                <button className={cl.checkout}>proceed to checkout</button>
-                <div className={cl.linkCart}>
-                  <Link>View Cart</Link>
+                <button className={`${cl.checkout} ${cl.generalStyle}`}>proceed to checkout</button>
+                <div className={cl.linkModal}>
+                  <ViewAll route={ROUTES.CART}/>
                 </div>
               </div>
             </div>
           )}
-          <button onClick={addToFavorite} className={cl.favorite}>
+          <button
+            onClick={addToFavorite}
+            className={`${cl.favorite} ${cl.generalStyle}`}
+          >
             <span>WISHLIST</span>
             <IoIosStarOutline />
           </button>
