@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import cl from "../../assets/styles/Product.module.scss";
 
-import { IoIosStarOutline, IoMdClose } from "react-icons/io";
 
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,17 +13,18 @@ import {
   toggleModalCart,
 } from "../User/userSlice";
 
-import { TiDeleteOutline } from "react-icons/ti";
-import { AiFillDelete } from "react-icons/ai";
-import ButtonDinamic from "../buttons/ButtonDinamic";
-import ViewAll from "../buttons/ViewAll";
-import { ROUTES } from "../../utils/routes";
+import { IoIosStarOutline} from "react-icons/io";
+
+import AddProductToCart from "../modal/AddProductToCart";
+import WishlistModal from "../modal/WishlistModal";
+
+
 
 const SIZES = [44, 45, 47];
 
 const Product = (item) => {
   const { title, images, price, description } = item;
-  const { showModalFavorite, showModalCart, cart } = useSelector(
+  const { showModalFavorite, showModalCart} = useSelector(
     (state) => state.user
   );
 
@@ -35,30 +35,12 @@ const Product = (item) => {
   const [currentImage, setCurrentImage] = useState();
   const [currentSize, setCurrentSize] = useState();
   const [modalMessage, setModalMessage] = useState("");
-
   
-
   useEffect(() => {
     if (!images.length) return;
 
     setCurrentImage(images[0]);
   }, [images]);
-
-  useEffect(() => {
-    if (showModalFavorite !== null) {
-      if (showModalFavorite) {
-        setModalMessage(`You added ${title} to your wishlist.`);
-      } else {
-        setModalMessage(`You removed ${title} from your wishlist.`);
-      }
-
-      const timer = setTimeout(() => {
-        setModalMessage("");
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [showModalFavorite]);
 
   const addToCart = () => {
     dispatch(addItemToCart(item));
@@ -68,13 +50,6 @@ const Product = (item) => {
   const addToFavorite = () => {
     dispatch(addItemToFavorite(item));
   };
-
-  const closeModal = () => {
-    dispatch(toggleFormFavorite(null));
-    setModalMessage("");
-  };
-
-  const closeModalCart = () => dispatch(toggleModalCart(null));
 
   return (
     <section className={cl.product}>
@@ -122,59 +97,7 @@ const Product = (item) => {
           >
             ADD TO CART
           </button>
-          {showModalCart && (
-            <div className={cl.overlay}>
-              <div className={cl.wrapper}>
-                <div className={cl.titleModal}>
-                  <div className={cl.close}>
-                    <IoMdClose onClick={closeModalCart} />
-                  </div>
-                  cart items
-                </div>
-                <div className={cl.card}>
-                  {cart.map((product) => (
-                    <div className={cl.item} key={product.id}>
-                      <div className={cl.image}>
-                        <img src={product.images[0]} alt={product.title} />
-                      </div>
-                      <div className={cl.info}>
-                        <div className={cl.titleProduct}>{product.title}</div>
-                        <div className={cl.sizeModal}>size:</div>
-                        <div className={cl.priceModal}>${product.price}</div>
-                        <div className={cl.amountProduct}>
-                          <div className={cl.manegProduct}>
-                            <ButtonDinamic
-                              isPlus={false}
-                              widthCircle="20px"
-                              hightCircle="20px"
-                              svgSize="20px"
-                            />
-                            total amount
-                            <ButtonDinamic
-                              isPlus={true}
-                              widthCircle="20px"
-                              hightCircle="20px"
-                              svgSize="20px"
-                            />
-                          </div>
-                          <div className={cl.deleteProduct}>
-                            <AiFillDelete/>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className={cl.totalModal}>
-                  Grand Total <span>$ total price</span>
-                </div>
-                <button className={`${cl.checkout} ${cl.generalStyle}`}>proceed to checkout</button>
-                <div className={cl.linkModal}>
-                  <ViewAll route={ROUTES.CART}/>
-                </div>
-              </div>
-            </div>
-          )}
+          {showModalCart && ( <AddProductToCart/>)}
           <button
             onClick={addToFavorite}
             className={`${cl.favorite} ${cl.generalStyle}`}
@@ -182,18 +105,7 @@ const Product = (item) => {
             <span>WISHLIST</span>
             <IoIosStarOutline />
           </button>
-          {modalMessage && (
-            <div
-              className={`${cl.bottomModal} ${
-                modalMessage ? cl.bottomModalActive : ""
-              }`}
-            >
-              <div className={cl.modalContent}>
-                <p>{modalMessage}</p>
-                <TiDeleteOutline onClick={closeModal} />
-              </div>
-            </div>
-          )}
+          {modalMessage && (<WishlistModal title={item.title}/>)}
         </div>
         <div className={cl.description}>{description}</div>
         <div className={cl.help}>
