@@ -20,8 +20,7 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { currentUser } = useSelector(({ user }) => user);
   const { list } = useSelector((state) => state.categories);
-  const {cart, favorite} = useSelector((state) => state.modal);
-
+  const { cart, favorite } = useSelector((state) => state.modal);
 
   const handleClick = () => {
     if (!currentUser) dispatch(toggleForm(true));
@@ -64,12 +63,16 @@ const Header = () => {
               <IoMdArrowDropdown />
             </NavLink>
             {isModalOpen && (
-              <div className={cl.modalCategories} onMouseLeave={handleMenuLeave} onMouseEnter={handleMenuHover}>
+              <div
+                className={cl.modalCategories}
+                onMouseLeave={handleMenuLeave}
+                onMouseEnter={handleMenuHover}
+              >
                 <ul>
                   {list.map(({ id, name }) => (
                     <li key={id}>
                       <NavLink
-                      onClick={() => setIsModalOpen(false)}
+                        onClick={() => setIsModalOpen(false)}
                         className={({ isActive }) =>
                           `${cl.link} ${isActive ? cl.active : ""}`
                         }
@@ -99,17 +102,21 @@ const Header = () => {
             <div className={cl.favorite}>
               <Link>
                 <FaRegHeart className="icon heart-icon" />
-                <div className={cl.countFavorite}>
-                  <span>{favorite.length}</span>
-                </div>
+                {favorite.length > 0 && (
+                  <div className={cl.countFavorite}>
+                    <span>{favorite.length}</span>
+                  </div>
+                )}
               </Link>
             </div>
             <div className={cl.cart}>
               <Link to={ROUTES.CART}>
                 <BsCart4 className="icon heart-icon" />
-                <div className={cl.countCart}>
-                  <span>{cart.length}</span>
-                </div>
+                {cart.length > 0 && (
+                  <div className={cl.countCart}>
+                    <span>{cart.length}</span>
+                  </div>
+                )}
               </Link>
             </div>
           </div>

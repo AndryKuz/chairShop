@@ -11,6 +11,8 @@ const WishlistModal = ({ title }) => {
   const { showModalFavorite } = useSelector((state) => state.modal);
   const [modalMessage, setModalMessage] = useState("");
 
+
+
   const closeModal = () => {
     setModalMessage("");
     dispatch(toggleModalFavorite(null));

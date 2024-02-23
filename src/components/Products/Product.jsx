@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addItemToCart,
   addItemToFavorite,
-  toggleModalFavorite,
   toggleModalCart,
 } from "../modal/modalSlice";
 
@@ -32,6 +31,7 @@ const Product = (item) => {
   const [currentSize, setCurrentSize] = useState();
   const classButton = cl.generalStyle;
 
+
   useEffect(() => {
     if (!images.length) return;
 
@@ -48,7 +48,7 @@ const Product = (item) => {
   
 
   const addToCart = () => {
-    dispatch(addItemToCart(item));
+    dispatch(addItemToCart({...item, size: currentSize}));
 
     dispatch(toggleModalCart(true));
 

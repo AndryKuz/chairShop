@@ -17,6 +17,7 @@ import { sumBy } from "lodash";
 const AddProductToCart = ({ classButton }) => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.modal);
+  console.log(cart);
 
   const removeItem = (id) => {
     dispatch(removeItemFromCart(id));
@@ -48,7 +49,7 @@ const AddProductToCart = ({ classButton }) => {
         </div>
         <div className={cl.card}>
           {cart.map((prod) => {
-            const { title, images, price, id, quantity } = prod;
+            const { title, images, price, id, quantity, size } = prod;
 
             return (
               <div className={cl.item} key={id}>
@@ -57,7 +58,7 @@ const AddProductToCart = ({ classButton }) => {
                 </div>
                 <div className={cl.info}>
                   <div className={cl.titleProduct}>{title}</div>
-                  <div className={cl.sizeModal}>size:</div>
+                  <div className={cl.sizeModal}>size: {size}</div>
                   <div className={cl.priceModal}>${price}</div>
                   <div className={cl.manageProduct}>
                     <div className={cl.amountProduct}>

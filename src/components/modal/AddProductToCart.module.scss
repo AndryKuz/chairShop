@@ -118,6 +118,9 @@
       display: flex;
       column-gap: 18px;
       justify-content: space-between;
+      span {
+        width:20px;
+      }
     }
     .deleteProduct {
       cursor: pointer;
