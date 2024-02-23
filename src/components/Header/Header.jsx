@@ -20,7 +20,7 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { currentUser } = useSelector(({ user }) => user);
   const { list } = useSelector((state) => state.categories);
-  const {cart, favorite} = useSelector((state) => state.user);
+  const {cart, favorite} = useSelector((state) => state.modal);
 
 
   const handleClick = () => {

@@ -5,6 +5,7 @@ import { productApi } from "../../features/api/apiSlice";
 // import { categoriesSlice } from "../../features/categories/categoriesSlice";//import { here } from "../../features/categories/here";
 import userSlice from "../User/userSlice";
 import categoriesSlice from "../../features/categories/categoriesSlice";
+import modalSlice from "../modal/modalSlice";
 
 
 
@@ -12,6 +13,7 @@ import categoriesSlice from "../../features/categories/categoriesSlice";
 
 export const store = configureStore({
     reducer: {
+        modal: modalSlice,
         user: userSlice,
         categories: categoriesSlice,
         [productApi.reducerPath]: productApi.reducer,

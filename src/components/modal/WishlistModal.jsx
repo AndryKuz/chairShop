@@ -4,13 +4,17 @@ import cl from "./WishlistModal.module.scss";
 import { TiDeleteOutline } from "react-icons/ti";
 import { useState } from "react";
 import { useEffect } from "react";
-import { toggleFormFavorite } from "../User/userSlice";
+import { toggleModalFavorite } from "../modal/modalSlice";
 
 const WishlistModal = ({ title }) => {
   const dispatch = useDispatch();
-  const { showModalFavorite } = useSelector((state) => state.user);
-
+  const { showModalFavorite } = useSelector((state) => state.modal);
   const [modalMessage, setModalMessage] = useState("");
+
+  const closeModal = () => {
+    setModalMessage("");
+    dispatch(toggleModalFavorite(null));
+  };
 
   useEffect(() => {
     if (showModalFavorite !== null) {
@@ -21,17 +25,14 @@ const WishlistModal = ({ title }) => {
       }
 
       const timer = setTimeout(() => {
-        setModalMessage("");
+        closeModal();
       }, 3000);
 
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(timer);
+      };
     }
   }, [showModalFavorite]);
-
-  const closeModal = () => {
-    dispatch(toggleFormFavorite(null));
-    setModalMessage("");
-  };
 
   return (
     <div

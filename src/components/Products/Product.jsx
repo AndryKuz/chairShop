@@ -3,55 +3,64 @@ import { useState } from "react";
 
 import cl from "../../assets/styles/Product.module.scss";
 
-
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addItemToCart,
   addItemToFavorite,
-  toggleFormFavorite,
+  toggleModalFavorite,
   toggleModalCart,
-} from "../User/userSlice";
+} from "../modal/modalSlice";
 
-import { IoIosStarOutline} from "react-icons/io";
+import { IoIosStarOutline } from "react-icons/io";
 
-import AddProductToCart from "../modal/AddProductToCart";
+import AddProducttoCartModal from "../modal/AddProducttoCartModal";
 import WishlistModal from "../modal/WishlistModal";
-
-
 
 const SIZES = [44, 45, 47];
 
 const Product = (item) => {
+  const dispatch = useDispatch();
   const { title, images, price, description } = item;
-  const { showModalFavorite, showModalCart} = useSelector(
-    (state) => state.user
+
+  const { showModalFavorite, showModalCart } = useSelector(
+    (state) => state.modal
   );
 
-  const dispatch = useDispatch();
-
   const oldPrice = Math.round(price * 1.3);
-
   const [currentImage, setCurrentImage] = useState();
   const [currentSize, setCurrentSize] = useState();
-  const [modalMessage, setModalMessage] = useState("");
-  
+  const classButton = cl.generalStyle;
+
   useEffect(() => {
     if (!images.length) return;
 
     setCurrentImage(images[0]);
   }, [images]);
 
+  useEffect(() => {
+    document.body.classList.toggle("body-no-scroll", showModalCart);
+
+    return () => {
+      document.body.classList.remove("body-no-scroll");
+    };
+  }, [showModalCart]);
+  
+
   const addToCart = () => {
     dispatch(addItemToCart(item));
 
     dispatch(toggleModalCart(true));
+
   };
   const addToFavorite = () => {
     dispatch(addItemToFavorite(item));
+
   };
 
   return (
+
+
     <section className={cl.product}>
       <div className={cl.galarry}>
         <div className={cl.mainImage}>
@@ -97,7 +106,7 @@ const Product = (item) => {
           >
             ADD TO CART
           </button>
-          {showModalCart && ( <AddProductToCart/>)}
+          {showModalCart && <AddProducttoCartModal classButton={classButton}/>}
           <button
             onClick={addToFavorite}
             className={`${cl.favorite} ${cl.generalStyle}`}
@@ -105,7 +114,7 @@ const Product = (item) => {
             <span>WISHLIST</span>
             <IoIosStarOutline />
           </button>
-          {modalMessage && (<WishlistModal title={item.title}/>)}
+          {showModalFavorite !== null && <WishlistModal title={item.title} />}
         </div>
         <div className={cl.description}>{description}</div>
         <div className={cl.help}>

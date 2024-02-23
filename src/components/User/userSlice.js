@@ -40,10 +40,7 @@ export const userSlice = createSlice({
     currentUser: null,
     showForm: false,
     formType: "signup",
-    cart: [],
-    favorite: [],
-    showModalFavorite: null,
-    showModalCart: true,
+    
   },
   reducers: {
     toggleForm: (state, { payload }) => {
@@ -51,45 +48,6 @@ export const userSlice = createSlice({
     },
     toggleFormType: (state, { payload }) => {
       state.formType = payload;
-    },
-    toggleFormFavorite: (state, {payload}) => {
-      state.showModalFavorite = payload;
-    },
-    toggleModalCart: (state, {payload}) => {
-      state.showModalCart = payload;
-    },
-    addItemToCart: (state, { payload }) => {
-      let newCart = [...state.cart];
-
-      const foundId = state.cart.find(({ id }) => payload.id === id);
-
-      if (foundId) {
-        newCart = newCart.map((item) =>
-          item.id === payload.id
-            ? { ...item, quantity: payload.quantity || item.quantity + 1 }
-            : item
-        );
-      } else {
-        newCart.push({ ...payload, quantity: 1 });
-      }
-      state.cart = newCart;
-    },
-    addItemToFavorite: (state, { payload }) => {
-      let newItem = [...state.favorite];
-     
-      const findItemToFavorite = state.favorite.some(
-        ({ id }) => id === payload.id
-      );
-
-      if(findItemToFavorite) {
-        newItem = newItem.filter(({id}) => id !== payload.id);
-        state.showModalFavorite = false;
-      } else {
-        newItem.push({...payload});
-        state.showModalFavorite = true;
-      }
-
-      state.favorite = newItem;
     },
   },
 
@@ -107,7 +65,9 @@ export const userSlice = createSlice({
   },
 });
 
-export const { toggleForm, toggleFormType, addItemToCart, addItemToFavorite, toggleFormFavorite, toggleModalCart } =
-  userSlice.actions;
+export const {
+  toggleForm,
+  toggleFormType
+} = userSlice.actions;
 
 export default userSlice.reducer;

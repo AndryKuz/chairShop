@@ -1,0 +1,79 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+
+export const modalSlice = createSlice({
+  name: "user",
+  initialState: {
+    cart: [],
+    showModalCart: null,
+    favorite: [],
+    showModalFavorite: null,
+    modalFavoriteAdd: null,
+    modalFavoriteRemove: null,
+  },
+  reducers: {
+    addItemToCart: (state, { payload }) => {
+      let newCart = [...state.cart];
+
+      const foundId = state.cart.find(({ id }) => id === payload.id);
+      if (foundId) {
+        newCart = newCart.map((item) => {
+          return item.id === payload.id
+            ? { ...item, quantity: payload.quantity || item.quantity + 1 }
+            : item;
+        });
+      } else {
+        newCart.push({ ...payload, quantity: 1 });
+      }
+      state.cart = newCart;
+    },
+    addItemToFavorite: (state, { payload }) => {
+      let newItem = [...state.favorite];
+
+      const findItemToFavorite = state.favorite.some(
+        ({ id }) => id === payload.id
+      );
+
+      if (findItemToFavorite) {
+        newItem = newItem.filter(({ id }) => id !== payload.id);
+        state.showModalFavorite = false;
+      } else {
+        newItem.push({ ...payload });
+        state.showModalFavorite = true;
+      }
+
+      state.favorite = newItem;
+    },
+    removeItemFromCart: (state, { payload }) => {
+      state.cart = state.cart.filter(({ id }) => id !== payload);
+    },
+    toggleModalFavorite: (state, { payload }) => {
+      console.log("Changing showModalFavorite to:", payload);
+      state.showModalFavorite = payload;
+    },
+    toggleModalCart: (state, { payload }) => {
+      state.showModalCart = payload;
+    },
+    toggleModalFavoriteAdd: (state, { payload }) => {
+      state.showModalCart = payload;
+    },
+    toggleModalFavoriteRemove: (state, { payload }) => {
+      state.showModalCart = payload;
+    },
+  },
+
+  extraReducers: (builder) => {},
+});
+
+export const {
+  addItemToCart,
+  addItemToFavorite,
+  removeItemFromCart,
+  toggleModalCart,
+  toggleModalFavorite,
+  toggleModalFavoriteAdd,
+  toggleModalFavoriteRemove,
+
+} = modalSlice.actions;
+
+export default modalSlice.reducer;
