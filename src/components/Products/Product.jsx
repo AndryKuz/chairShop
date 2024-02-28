@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addItemToCart,
   addItemToFavorite,
+  removeItemFromFavorite,
   toggleModalCart,
 } from "../modal/modalSlice";
 
@@ -22,7 +23,7 @@ const Product = (item) => {
   const dispatch = useDispatch();
   const { title, images, price, description } = item;
 
-  const { showModalFavorite, showModalCart } = useSelector(
+  const { showModalFavorite, showModalCart, favorite } = useSelector(
     (state) => state.modal
   );
 
@@ -30,7 +31,7 @@ const Product = (item) => {
   const [currentImage, setCurrentImage] = useState();
   const [currentSize, setCurrentSize] = useState();
   const classButton = cl.generalStyle;
-
+console.log(favorite);
 
   useEffect(() => {
     if (!images.length) return;
@@ -53,8 +54,10 @@ const Product = (item) => {
     dispatch(toggleModalCart(true));
 
   };
-  const addToFavorite = () => {
-    dispatch(addItemToFavorite(item));
+  const toggleFavorite = () => {
+    
+      dispatch(addItemToFavorite(item));
+    
 
   };
 
@@ -108,7 +111,7 @@ const Product = (item) => {
           </button>
           {showModalCart && <AddProducttoCartModal classButton={classButton}/>}
           <button
-            onClick={addToFavorite}
+            onClick={toggleFavorite}
             className={`${cl.favorite} ${cl.generalStyle}`}
           >
             <span>WISHLIST</span>

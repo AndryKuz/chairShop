@@ -1,0 +1,75 @@
+.mainContent {
+  color: black;
+}
+.title {
+  margin: 50px 0px;
+  font-size: 26px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.descriptionItem {
+  margin-bottom: 15px;
+  display: flex;
+  .prodDes {
+    flex: 45%;
+    padding-left: 50px;
+  }
+  .priceDes,
+  .qtyDes,
+  .subtotalDes,
+  .empty {
+    flex: 10%;
+    text-align: center;
+  }
+}
+
+.cardWishlist {
+  padding: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.itemWishlist {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+  margin-bottom: 20px;
+
+  .imageProd {
+    max-width: 150px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex: 15%;
+    img {
+      object-fit: cover;
+      border-radius: 6px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .titleProd {
+    font-size: 18px;
+    flex: 45%;
+    overflow: hidden;
+  }
+
+  .priceProd,
+  .quantityProd,
+  .subtotalProd,
+  .removeProd {
+    display: flex;
+    flex: 10%;
+    align-items: center;
+    justify-content: center;
+  }
+  .quantityProd {
+    display: flex;
+    column-gap: 15px;
+    span {
+        color: #0000;
+    }
+  }
+}

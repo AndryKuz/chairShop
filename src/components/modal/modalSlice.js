@@ -14,10 +14,10 @@ export const modalSlice = createSlice({
     addItemToCart: (state, { payload }) => {
       let newCart = [...state.cart];
 
-      const foundId = state.cart.find(({ id, size }) => id === payload.id && size === payload.size);
+      const foundId = state.cart.find(({ id }) => id === payload.id);
       if (foundId) {
         newCart = newCart.map((item) => {
-          return (item.id === payload.id && item.size === payload.size)
+          return (item.id === payload.id)
             ? { ...item, quantity: payload.quantity || item.quantity + 1 }
             : item;
         });
@@ -29,7 +29,7 @@ export const modalSlice = createSlice({
     addItemToFavorite: (state, { payload }) => {
       let newItem = [...state.favorite];
 
-      const findItemToFavorite = state.favorite.some(
+      const findItemToFavorite = state.favorite.find(
         ({ id }) => id === payload.id
       );
 
@@ -37,14 +37,16 @@ export const modalSlice = createSlice({
         newItem = newItem.filter(({ id }) => id !== payload.id);
         state.showModalFavorite = false;
       } else {
-        newItem.push({ ...payload });
+        newItem.push({ ...payload, quantity: 1 });
         state.showModalFavorite = true;
       }
 
       state.favorite = newItem;
     },
+    
     removeItemFromCart: (state, { payload }) => {
-      state.cart = state.cart.filter(({ id }) => id !== payload);
+      state.cart = state.cart.filter(({id}) =>  id !== payload);
+      
     },
     toggleModalFavorite: (state, { payload }) => {
       state.showModalFavorite = payload;

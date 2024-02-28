@@ -9,6 +9,7 @@ import Cart from '../../pages/Cart';
 import NotFound from '../../pages/NotFound';
 import SingleCategory from "../../pages/SingleCategory";
 import SingleProduct from "../../pages/SingleProduct";
+import Wishlist from "../../pages/Wishlist";
 
 const AppRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const AppRoutes = () => {
       <Route path={ROUTES.CONTACTS} element={<Contacts/>}/>
       <Route path={ROUTES.CART} element={<Cart/>}/>
       <Route path={ROUTES.CATEGORY} element={<SingleCategory/>}/>
+      <Route path={ROUTES.WISHLIST} element={<Wishlist/>}/>
       <Route path="*" element={<NotFound/>}/>
       
     </Routes>

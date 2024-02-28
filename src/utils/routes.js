@@ -6,5 +6,6 @@ export const ROUTES = {
     PRODUCT: '/products/:id',
     ABOUT: '/about',
     CONTACTS: '/contacst',
+    WISHLIST: '/wishlist',
 
 }

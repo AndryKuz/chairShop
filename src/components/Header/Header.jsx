@@ -100,7 +100,7 @@ const Header = () => {
               <IoPersonOutline className="icon login-icon " />
             </div>
             <div className={cl.favorite}>
-              <Link>
+              <Link to={ROUTES.WISHLIST}>
                 <FaRegHeart className="icon heart-icon" />
                 {favorite.length > 0 && (
                   <div className={cl.countFavorite}>

@@ -1,9 +1,13 @@
 .product {
   color: black;
   display: flex;
+  
 }
 .galarry {
   flex: 60%;
+
+  
+  overflow-y: auto;
   .imageCurrent {
     display: flex;
     column-gap: 10px;
@@ -21,11 +25,15 @@
 }
 
 .infoProduct {
+  height: 100dvh;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 40%;
   padding: 10px;
+  
   & > div {
     margin-bottom: 30px;
   }

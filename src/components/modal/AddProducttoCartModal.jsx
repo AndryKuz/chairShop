@@ -16,8 +16,7 @@ import { sumBy } from "lodash";
 
 const AddProductToCart = ({ classButton }) => {
   const dispatch = useDispatch();
-  const { cart } = useSelector((state) => state.modal);
-  console.log(cart);
+  const { cart, showModalCart } = useSelector((state) => state.modal);
 
   const removeItem = (id) => {
     dispatch(removeItemFromCart(id));
@@ -40,7 +39,9 @@ const AddProductToCart = ({ classButton }) => {
   return (
     <>
       <div className={cl.overlay} onClick={closeModalCart} />
-      <div className={cl.wrapper}>
+      <div
+        className={`${cl.wrapper} ${showModalCart ? cl.wrapperAnimation : ""}`}
+      >
         <div className={cl.titleModal}>
           <div className={cl.close}>
             <IoMdClose onClick={closeModalCart} />
@@ -118,6 +119,7 @@ const AddProductToCart = ({ classButton }) => {
           <ViewAll route={ROUTES.CART} />
         </div>
       </div>
+      
     </>
   );
 };
