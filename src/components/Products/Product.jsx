@@ -31,7 +31,7 @@ const Product = (item) => {
   const [currentImage, setCurrentImage] = useState();
   const [currentSize, setCurrentSize] = useState();
   const classButton = cl.generalStyle;
-console.log(favorite);
+
 
   useEffect(() => {
     if (!images.length) return;

@@ -1,17 +1,35 @@
 import { useDispatch, useSelector } from "react-redux";
 import cl from "../../src/assets/styles/Wishlist.module.scss";
 import ButtonDinamic from "../components/buttons/ButtonDinamic";
-import { addItemToCart } from "../components/modal/modalSlice";
+import {
+  addItemToFavorite,
+  removeItemFromFavorite,
+} from "../components/modal/modalSlice";
 import { AiFillDelete } from "react-icons/ai";
+import { BsCart4 } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import ModalCenter from "../components/modal/ModalCenter";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
+  const [isVisible, setIsVisible] = useState(false);
   const { favorite } = useSelector((state) => state.modal);
-  console.log(favorite);
+
+  const removeItem = (id) => {
+    dispatch(removeItemFromFavorite(id));
+  };
 
   const changeQuantity = (item, quantity) => {
-    dispatch(addItemToCart({ ...item, quantity }));
+    dispatch(addItemToFavorite({ ...item, quantity }));
   };
+
+  const showModal = () => {
+    setIsVisible(true);
+  }
+  const hideModal = () => {
+    setIsVisible(false);
+  }
 
   return (
     <section>
@@ -29,7 +47,7 @@ const Wishlist = () => {
             </div>
             <div className={cl.cardWishlist}>
               {favorite.map((prod) => {
-                const { title, images, price, id, quantity} = prod;
+                const { title, images, price, id, quantity } = prod;
 
                 return (
                   <div className={cl.itemWishlist} key={id}>
@@ -52,7 +70,7 @@ const Wishlist = () => {
                           svgSize="20px"
                         />
                       </div>
-                      <span>{quantity}</span>
+                      <span className={cl.quantityWishlist}>{quantity}</span>
                       <div
                         className={cl.plus}
                         onClick={() =>
@@ -67,21 +85,30 @@ const Wishlist = () => {
                         />
                       </div>
                     </div>
-                    <div className={cl.subtotalProd}></div>
-                    <div className={cl.removeProd}>
-                      <AiFillDelete />
+                    <div className={cl.subtotalProd}>$ {price * quantity}</div>
+                    <div className={cl.addRemove}>
+                      <div className={cl.cartAddWithFav}>
+                        <BsCart4 />
+                        <div className={cl.tooltip}>Add to Cart</div>
+                      </div>
+                      <div
+                        className={cl.removeProd}
+                        onClick={() => removeItem(id)}
+                      >
+                        <AiFillDelete />
+                        <div className={cl.tooltip}>Delete</div>
+                      </div>
                     </div>
                   </div>
                 );
               })}
             </div>
             <div className={cl.final}>
-              <div>
-                <button> Empty Wishlist</button>
-              </div>
-              <div>
-                <button>Add All To Cart</button>
-              </div>
+                <button onClick={showModal}> empty wishlist</button>
+                {isVisible && <ModalCenter onHide={hideModal}/>}
+              <Link>
+                <button>add all to cart</button>
+              </Link>
             </div>
           </div>
         </div>

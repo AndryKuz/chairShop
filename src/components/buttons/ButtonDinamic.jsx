@@ -3,7 +3,7 @@ import { FaPlus } from "react-icons/fa6";
 
 import "./button.scss";
 
-const ButtonDinamic = ({isPlus, svgColor, svgSize, widthCircle, hightCircle}) => {
+const ButtonDinamic = ({isPlus, svgSize, widthCircle, hightCircle}) => {
 
 const Icon = isPlus ? FaPlus : FaMinus;
 
