@@ -9,10 +9,12 @@ import {
 import { AiFillDelete } from "react-icons/ai";
 import { BsCart4 } from "react-icons/bs";
 import ModalCenter from "../components/modal/ModalCenter";
+import SizeSelection from "../components/modal/SizeSelection";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
   const [isVisible, setIsVisible] = useState(false);
+  const [modalAddToCart, setModalAddToCart] = useState(false);
   const [actionType, setActionType] = useState("");
   const { favorite } = useSelector((state) => state.modal);
 
@@ -31,6 +33,10 @@ const Wishlist = () => {
   const hideModal = () => {
     setIsVisible(false);
   };
+
+  const showModalAddToCart = () => {
+    setModalAddToCart(true);
+  }
 
   return (
     <section>
@@ -93,10 +99,12 @@ const Wishlist = () => {
                         $ {price * quantity}
                       </div>
                       <div className={cl.addRemove}>
-                        <div className={cl.cartAddWithFav}>
+                        {/* нужно что бы при клике я передавал обьект этого Item в модальное окно для выбора размера */}
+                        <div className={cl.cartAddWithFav} onClick={showModalAddToCart}>
                           <BsCart4 />
                           <div className={cl.tooltip}>Add to Cart</div>
                         </div>
+                        {modalAddToCart && <SizeSelection item={prod}/>}
                         <div
                           className={cl.removeProd}
                           onClick={() => removeItem(id)}

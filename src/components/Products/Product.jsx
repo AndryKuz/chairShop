@@ -17,7 +17,7 @@ import { IoIosStarOutline } from "react-icons/io";
 import AddProducttoCartModal from "../modal/AddProducttoCartModal";
 import WishlistModal from "../modal/WishlistModal";
 
-const SIZES = [44, 45, 47];
+export const SIZES = [44, 45, 47];
 
 const Product = (item) => {
   const dispatch = useDispatch();
