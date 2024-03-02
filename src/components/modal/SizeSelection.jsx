@@ -1,32 +1,79 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import cl from "./SizeSelection.module.scss";
 import { SIZES } from "../Products/Product";
 import { IoMdClose } from "react-icons/io";
+import { useEffect, useState } from "react";
+import {
+  addItemToCart,
+  removeItemFromFavorite,
+  toggleModalCart,
+} from "./modalSlice";
+import AddProductToCart from "./AddProducttoCartModal";
 
-const SizeSelection = ({item}) => {
-    // item должен содержать в себе обьект с данными о товаре
-  const { favorite } = useSelector((state) => state.modal);
+const SizeSelection = ({ item, setModalAddToCart }) => {
+  const dispatch = useDispatch();
+  const { showModalCart } = useSelector((state) => state.modal);
+
+
+
+
+  const [isActiveSize, setIsActiveSize] = useState("");
+
+  const chooseSize = () => {
+    setIsActiveSize(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalAddToCart(false);
+  };
+
+  const addToCartItem = () => {
+    dispatch(addItemToCart(item));
+    handleCloseModal();
+    dispatch(removeItemFromFavorite(item.id));
+    // dispatch(toggleModalCart(true));
+  };
+
+  // useEffect(() => {
+  //   if (showModalCart) {
+  //     // Переместите dispatch(toggleModalCart(true)) сюда, чтобы вызвать его после обновления состояния showModalCart
+  //     dispatch(toggleModalCart(true));
+  //   }
+  // }, [showModalCart, dispatch]);
+  
 
   return (
-    <div className="overlay">
+    <>
+      <div className="overlay" onClick={handleCloseModal}></div>
       <div className={cl.sizeModalWrapper}>
-        <IoMdClose/>
+        <IoMdClose onClick={handleCloseModal} />
         <div className={cl.sizeChoose}>
           {SIZES.map((size) => (
-            <div className={cl.size} key={size}>
+            <div
+              className={`${cl.size} ${
+                isActiveSize === size ? cl.activeSizeButton : ""
+              }`}
+              key={size}
+              onClick={() => setIsActiveSize(size)}
+            >
               {size}
             </div>
           ))}
         </div>
         <div className={cl.itemAddToCart}>
-            <div className={cl.cardItem}>
-                <div className={cl.imageItem}><img src={item.images[0]} alt={item.title} /></div>
-                <div className={cl.priceItem}>$ {item.price}</div>
+          <div className={cl.cardItem}>
+            <div className={cl.imageItem}>
+              <img src={item.images[0]} alt={item.title} />
             </div>
-            <button>add to cart</button>
+            <div className={cl.priceItem}>$ {item.price}</div>
+          </div>
+          <button disabled={!isActiveSize} onClick={addToCartItem}>
+            add to cart
+          </button>
+          {showModalCart && <AddProductToCart />}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

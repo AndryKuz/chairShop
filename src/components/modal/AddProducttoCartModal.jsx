@@ -48,6 +48,7 @@ const AddProductToCart = ({ classButton }) => {
           </div>
           cart items
         </div>
+        {/* {cart.length === 0 } */}
         <div className={cl.card}>
           {cart.map((prod) => {
             const { title, images, price, id, quantity, size } = prod;

@@ -104,7 +104,7 @@ const Wishlist = () => {
                           <BsCart4 />
                           <div className={cl.tooltip}>Add to Cart</div>
                         </div>
-                        {modalAddToCart && <SizeSelection item={prod}/>}
+                        {modalAddToCart && <SizeSelection item={prod} setModalAddToCart={setModalAddToCart}/>}
                         <div
                           className={cl.removeProd}
                           onClick={() => removeItem(id)}

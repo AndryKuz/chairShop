@@ -13,6 +13,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart4 } from "react-icons/bs";
+import { toggleModalCart } from "../modal/modalSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,11 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { currentUser } = useSelector(({ user }) => user);
   const { list } = useSelector((state) => state.categories);
-  const { cart, favorite } = useSelector((state) => state.modal);
+  const { cart, favorite, showModalCart } = useSelector((state) => state.modal);
+
+  const handleModalCart = () => {
+    dispatch(toggleModalCart(true))
+  }
 
   const handleClick = () => {
     if (!currentUser) dispatch(toggleForm(true));
