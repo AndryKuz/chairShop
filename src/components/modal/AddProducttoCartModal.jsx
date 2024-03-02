@@ -26,7 +26,7 @@ const AddProductToCart = ({ classButton }) => {
   const handleDeleteItem = (id) => {
     if (cart.length === 1) {
       removeItem(id);
-      closeModalCart();
+      // closeModalCart();
     } else {
       removeItem(id);
     }
@@ -48,79 +48,85 @@ const AddProductToCart = ({ classButton }) => {
           </div>
           cart items
         </div>
-        {/* {cart.length === 0 } */}
-        <div className={cl.card}>
-          {cart.map((prod) => {
-            const { title, images, price, id, quantity, size } = prod;
+        {cart.length === 0 ? (
+          <div className={cl.emptyModalCart}>
+            You have no items in your shopping cart.
+          </div>
+        ) : (
+          <>
+            <div className={cl.card}>
+              {cart.map((prod) => {
+                const { title, images, price, id, quantity, size } = prod;
 
-            return (
-              <div className={cl.item} key={id}>
-                <div className={cl.image}>
-                  <img src={images[0]} alt={title} />
-                </div>
-                <div className={cl.info}>
-                  <div className={cl.titleProduct}>{title}</div>
-                  <div className={cl.sizeModal}>size: {size}</div>
-                  <div className={cl.priceModal}>${price}</div>
-                  <div className={cl.manageProduct}>
-                    <div className={cl.amountProduct}>
-                      <div
-                        className={cl.minus}
-                        onClick={() =>
-                          changeQuantity(prod, Math.max(1, quantity - 1))
-                        }
-                      >
-                        <ButtonDinamic
-                          isPlus={false}
-                          widthCircle="20px"
-                          hightCircle="20px"
-                          svgSize="20px"
-                        />
-                      </div>
-                      <span>{quantity}</span>
-                      <div
-                        className={cl.plus}
-                        onClick={() =>
-                          changeQuantity(prod, Math.max(1, quantity + 1))
-                        }
-                      >
-                        <ButtonDinamic
-                          isPlus={true}
-                          widthCircle="20px"
-                          hightCircle="20px"
-                          svgSize="20px"
-                        />
-                      </div>
+                return (
+                  <div className={cl.item} key={id}>
+                    <div className={cl.image}>
+                      <img src={images[0]} alt={title} />
                     </div>
-                    <div
-                      className={cl.deleteProduct}
-                      onClick={() => handleDeleteItem(prod.id)}
-                    >
-                      <AiFillDelete />
+                    <div className={cl.info}>
+                      <div className={cl.titleProduct}>{title}</div>
+                      <div className={cl.sizeModal}>size: {size}</div>
+                      <div className={cl.priceModal}>${price}</div>
+                      <div className={cl.manageProduct}>
+                        <div className={cl.amountProduct}>
+                          <div
+                            className={cl.minus}
+                            onClick={() =>
+                              changeQuantity(prod, Math.max(1, quantity - 1))
+                            }
+                          >
+                            <ButtonDinamic
+                              isPlus={false}
+                              widthCircle="20px"
+                              hightCircle="20px"
+                              svgSize="20px"
+                            />
+                          </div>
+                          <span>{quantity}</span>
+                          <div
+                            className={cl.plus}
+                            onClick={() =>
+                              changeQuantity(prod, Math.max(1, quantity + 1))
+                            }
+                          >
+                            <ButtonDinamic
+                              isPlus={true}
+                              widthCircle="20px"
+                              hightCircle="20px"
+                              svgSize="20px"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className={cl.deleteProduct}
+                          onClick={() => handleDeleteItem(prod.id)}
+                        >
+                          <AiFillDelete />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                );
+              })}
+            </div>
+            <div className={cl.totalModal}>
+              Grand Total
+              <div className={cl.totalPrice}>
+                <div>$</div>
+                <span>
+                  {sumBy(cart.map(({ price, quantity }) => price * quantity))}{" "}
+                </span>
               </div>
-            );
-          })}
-        </div>
-        <div className={cl.totalModal}>
-          Grand Total
-          <div className={cl.totalPrice}>
-            <div>$</div>
-            <span>
-              {sumBy(cart.map(({ price, quantity }) => price * quantity))}{" "}
-            </span>
-          </div>
-        </div>
-        <button className={`${cl.checkout} ${classButton}`}>
-          proceed to checkout
-        </button>
-        <div className={cl.linkModal}>
-          <ViewAll route={ROUTES.CART} />
-        </div>
+            </div>
+            <button className={`${cl.checkout} ${classButton}`}>
+              proceed to checkout
+            </button>
+            <div className={cl.linkModal}>
+              <ViewAll route={ROUTES.CART} />
+            </div>
+          </>
+        )}
       </div>
-      
     </>
   );
 };

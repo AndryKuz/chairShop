@@ -14,6 +14,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
 import { BsCart4 } from "react-icons/bs";
 import { toggleModalCart } from "../modal/modalSlice";
+import AddProducttoCartModal from '../modal/AddProducttoCartModal';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -24,8 +25,8 @@ const Header = () => {
   const { cart, favorite, showModalCart } = useSelector((state) => state.modal);
 
   const handleModalCart = () => {
-    dispatch(toggleModalCart(true))
-  }
+    dispatch(toggleModalCart(true));
+  };
 
   const handleClick = () => {
     if (!currentUser) dispatch(toggleForm(true));
@@ -114,16 +115,15 @@ const Header = () => {
                 )}
               </Link>
             </div>
-            <div className={cl.cart}>
-              <Link to={ROUTES.CART}>
-                <BsCart4 className="icon heart-icon" />
-                {cart.length > 0 && (
-                  <div className={cl.countCart}>
-                    <span>{cart.length}</span>
-                  </div>
-                )}
-              </Link>
+            <div className={cl.cart} onClick={handleModalCart}>
+              <BsCart4 className="icon heart-icon" />
+              {cart.length > 0 && (
+                <div className={cl.countCart}>
+                  <span>{cart.length}</span>
+                </div>
+              )}
             </div>
+            {showModalCart && <AddProducttoCartModal/>}
           </div>
         </div>
       </div>

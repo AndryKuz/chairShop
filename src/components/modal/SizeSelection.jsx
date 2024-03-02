@@ -8,7 +8,7 @@ import {
   removeItemFromFavorite,
   toggleModalCart,
 } from "./modalSlice";
-import AddProductToCart from "./AddProducttoCartModal";
+import AddProducttoCartModal from './AddProducttoCartModal';
 
 const SizeSelection = ({ item, setModalAddToCart }) => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const SizeSelection = ({ item, setModalAddToCart }) => {
     dispatch(addItemToCart(item));
     handleCloseModal();
     dispatch(removeItemFromFavorite(item.id));
-    // dispatch(toggleModalCart(true));
+    dispatch(toggleModalCart(true));
   };
 
   // useEffect(() => {
@@ -70,7 +70,7 @@ const SizeSelection = ({ item, setModalAddToCart }) => {
           <button disabled={!isActiveSize} onClick={addToCartItem}>
             add to cart
           </button>
-          {showModalCart && <AddProductToCart />}
+          {showModalCart && <AddProducttoCartModal />}
         </div>
       </div>
     </>
