@@ -1,6 +1,6 @@
 .sizeModalWrapper {
   position: fixed;
-  bottom: 0;
+  bottom: -100%;
   left: 0;
   background-color: #ffff;
   height: 300px;
@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   cursor: default;
+  animation: slideInDown 1s ease-in-out forwards;
   svg {
     position: absolute;
     right: 10px;
@@ -84,9 +85,21 @@
   .priceItem {
   }
 }
-
+@keyframes slideInDown {
+  0% {
+    bottom: -100%;
+  }
+  100% {
+    bottom: 0;
+  }
+}
 .activeSizeButton {
   background-color: var(--orange);
   color: #fff;
   border: var(--orange);
+}
+
+.wrapperAnimationDown {
+  animation: none;
+  animation: slideInDown 1s ease-in-out forwards;
 }

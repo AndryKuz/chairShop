@@ -73,7 +73,16 @@ footer {
   text-align: center;
 }
 
+//      Title
 
+.title {
+  color: var(--title);
+  text-align: center;
+  font-size: 30px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  line-height: 30px;
+}
 
 //            Class active
 .activeMenu {

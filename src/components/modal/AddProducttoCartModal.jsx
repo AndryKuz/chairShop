@@ -121,7 +121,7 @@ const AddProductToCart = ({ classButton }) => {
             <button className={`${cl.checkout} ${classButton}`}>
               proceed to checkout
             </button>
-            <div className={cl.linkModal}>
+            <div className={cl.linkModal} onClick={closeModalCart}>
               <ViewAll route={ROUTES.CART} />
             </div>
           </>

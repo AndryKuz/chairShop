@@ -101,7 +101,7 @@ const SingleCategory = () => {
             />
           </div>
           <div className={cl.singleCatagory}>
-            <h2 className={cl.title}>{cat?.name}</h2>
+            <h2 className='title'>{cat?.name}</h2>
             {isLoading ? (
               <div className={cl.loadProduct}>Loading....</div>
             ) : !isSuccess || !data.length ? (

@@ -45,7 +45,7 @@ const SizeSelection = ({ item, setModalAddToCart }) => {
   return (
     <>
       <div className="overlay" onClick={handleCloseModal}></div>
-      <div className={cl.sizeModalWrapper}>
+      <div className={`${cl.sizeModalWrapper} ${showModalCart ? cl.wrapperAnimationDown : ''}`}>
         <IoMdClose onClick={handleCloseModal} />
         <div className={cl.sizeChoose}>
           {SIZES.map((size) => (
