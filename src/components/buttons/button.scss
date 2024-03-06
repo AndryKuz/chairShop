@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
- 
+
   &:hover {
     .svg-dinamic {
       fill: var(--orange);
@@ -22,7 +22,6 @@
     z-index: 3;
     transition: all 0.3s ease;
   }
- 
 
   .circle {
     transition: all 0.3s ease;
@@ -42,25 +41,27 @@
 .button-arrow {
   display: flex;
   align-items: center;
-  .arrow {
-    fill: var(--orange);
-    transition: all 0.5s ease;
-  }
-  a {
-    margin-right: 15px;
+
+  .button-link {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
     color: var(--orange);
     transition: all 0.5s ease;
-  }
-
-  &:hover {
-    a {
-      color: #000;
+    .arrow {
+      margin-left: 15px;
+      fill: var(--orange);
       transition: all 0.5s ease;
     }
-    .arrow {
-      fill: #000;
+    &:hover {
+      color: #000;
       transition: all 0.5s ease;
-      transform: translateX(15px);
+
+      .arrow {
+        fill: #000;
+        transition: all 0.5s ease;
+        transform: translateX(15px);
+      }
     }
   }
 }

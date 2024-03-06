@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cl from "../../src/assets/styles/Wishlist.module.scss";
-import ButtonDinamic from "../components/buttons/ButtonDinamic";
 import {
   addItemToFavorite,
   removeItemFromFavorite,
@@ -10,6 +9,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { BsCart4 } from "react-icons/bs";
 import ModalCenter from "../components/modal/ModalCenter";
 import SizeSelection from "../components/modal/SizeSelection";
+import ProductController from "../components/common/ProductController";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -22,9 +22,7 @@ const Wishlist = () => {
     dispatch(removeItemFromFavorite(id));
   };
 
-  const changeQuantity = (item, quantity) => {
-    dispatch(addItemToFavorite({ ...item, quantity }));
-  };
+
 
   const showModal = (type) => {
     setActionType(type);
@@ -67,33 +65,7 @@ const Wishlist = () => {
                       <div className={cl.titleProd}>{title}</div>
                       <div className={cl.priceProd}>{price}</div>
                       <div className={cl.quantityProd}>
-                        <div
-                          className={cl.minus}
-                          onClick={() =>
-                            changeQuantity(prod, Math.max(1, quantity - 1))
-                          }
-                        >
-                          <ButtonDinamic
-                            isPlus={false}
-                            widthCircle="20px"
-                            hightCircle="20px"
-                            svgSize="20px"
-                          />
-                        </div>
-                        <span className={cl.quantityWishlist}>{quantity}</span>
-                        <div
-                          className={cl.plus}
-                          onClick={() =>
-                            changeQuantity(prod, Math.max(1, quantity + 1))
-                          }
-                        >
-                          <ButtonDinamic
-                            isPlus={true}
-                            widthCircle="20px"
-                            hightCircle="20px"
-                            svgSize="20px"
-                          />
-                        </div>
+                        <ProductController prod={prod}/>
                       </div>
                       <div className={cl.subtotalProd}>
                         $ {price * quantity}

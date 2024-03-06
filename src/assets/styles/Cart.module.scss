@@ -1,8 +1,17 @@
 .cart {
   color: black;
 }
+.main {
+  display: flex;
+ 
+  .cards {
+    flex: 65%;
+  }
+  .summary {
+    flex: 25%;
+  }
+}
 
-.mainTitle {
-    text-align: center;
-    font-size: 26px;
+.item {
+  display: flex;
 }

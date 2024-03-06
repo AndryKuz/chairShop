@@ -1,5 +1,4 @@
 import { ROUTES } from "../../utils/routes";
-import ButtonDinamic from "../buttons/ButtonDinamic";
 import ViewAll from "../buttons/ViewAll";
 
 import { AiFillDelete } from "react-icons/ai";
@@ -7,12 +6,9 @@ import { IoMdClose } from "react-icons/io";
 
 import cl from "./AddProductToCart.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addItemToCart,
-  removeItemFromCart,
-  toggleModalCart,
-} from "../modal/modalSlice";
+import { removeItemFromCart, toggleModalCart } from "../modal/modalSlice";
 import { sumBy } from "lodash";
+import ProductController from "../common/ProductController";
 
 const AddProductToCart = ({ classButton }) => {
   const dispatch = useDispatch();
@@ -26,14 +22,9 @@ const AddProductToCart = ({ classButton }) => {
   const handleDeleteItem = (id) => {
     if (cart.length === 1) {
       removeItem(id);
-      // closeModalCart();
     } else {
       removeItem(id);
     }
-  };
-
-  const changeQuantity = (item, quantity) => {
-    dispatch(addItemToCart({ ...item, quantity }));
   };
 
   return (
@@ -60,7 +51,7 @@ const AddProductToCart = ({ classButton }) => {
 
                 return (
                   <div className={cl.item} key={id}>
-                    <div className={cl.image}>
+                    <div className="image">
                       <img src={images[0]} alt={title} />
                     </div>
                     <div className={cl.info}>
@@ -68,35 +59,7 @@ const AddProductToCart = ({ classButton }) => {
                       <div className={cl.sizeModal}>size: {size}</div>
                       <div className={cl.priceModal}>${price}</div>
                       <div className={cl.manageProduct}>
-                        <div className={cl.amountProduct}>
-                          <div
-                            className={cl.minus}
-                            onClick={() =>
-                              changeQuantity(prod, Math.max(1, quantity - 1))
-                            }
-                          >
-                            <ButtonDinamic
-                              isPlus={false}
-                              widthCircle="20px"
-                              hightCircle="20px"
-                              svgSize="20px"
-                            />
-                          </div>
-                          <span>{quantity}</span>
-                          <div
-                            className={cl.plus}
-                            onClick={() =>
-                              changeQuantity(prod, Math.max(1, quantity + 1))
-                            }
-                          >
-                            <ButtonDinamic
-                              isPlus={true}
-                              widthCircle="20px"
-                              hightCircle="20px"
-                              svgSize="20px"
-                            />
-                          </div>
-                        </div>
+                        <ProductController prod={prod} />
                         <div
                           className={cl.deleteProduct}
                           onClick={() => handleDeleteItem(prod.id)}
