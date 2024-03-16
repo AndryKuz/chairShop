@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import cl from "../../src/assets/styles/Wishlist.module.scss";
 import {
-  addItemToFavorite,
   removeItemFromFavorite,
 } from "../components/modal/modalSlice";
 import { AiFillDelete } from "react-icons/ai";
@@ -21,8 +20,6 @@ const Wishlist = () => {
   const removeItem = (id) => {
     dispatch(removeItemFromFavorite(id));
   };
-
-
 
   const showModal = (type) => {
     setActionType(type);
@@ -65,18 +62,17 @@ const Wishlist = () => {
                       <div className={cl.titleProd}>{title}</div>
                       <div className={cl.priceProd}>{price}</div>
                       <div className={cl.quantityProd}>
-                        <ProductController prod={prod}/>
+                        <ProductController prod={prod} sourceComponent={'wishlist'}/>
                       </div>
                       <div className={cl.subtotalProd}>
                         $ {price * quantity}
                       </div>
                       <div className={cl.addRemove}>
-                        {/* нужно что бы при клике я передавал обьект этого Item в модальное окно для выбора размера */}
                         <div className={cl.cartAddWithFav} onClick={showModalAddToCart}>
                           <BsCart4 />
                           <div className={cl.tooltip}>Add to Cart</div>
                         </div>
-                        {modalAddToCart && <SizeSelection item={prod} setModalAddToCart={setModalAddToCart}/>}
+                        {modalAddToCart && <SizeSelection prod={prod} setModalAddToCart={setModalAddToCart}/>}
                         <div
                           className={cl.removeProd}
                           onClick={() => removeItem(id)}

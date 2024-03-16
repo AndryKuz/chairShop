@@ -4,43 +4,32 @@ import { SIZES } from "../Products/Product";
 import { IoMdClose } from "react-icons/io";
 import { useEffect, useState } from "react";
 import {
+  addItemFromFavoriteToCart,
   addItemToCart,
   removeItemFromFavorite,
   toggleModalCart,
 } from "./modalSlice";
 import AddProducttoCartModal from './AddProducttoCartModal';
 
-const SizeSelection = ({ item, setModalAddToCart }) => {
+const SizeSelection = ({ prod, setModalAddToCart }) => {
   const dispatch = useDispatch();
   const { showModalCart } = useSelector((state) => state.modal);
-
-
-
+console.log(prod);
 
   const [isActiveSize, setIsActiveSize] = useState("");
 
-  const chooseSize = () => {
-    setIsActiveSize(true);
-  };
 
   const handleCloseModal = () => {
     setModalAddToCart(false);
   };
 
   const addToCartItem = () => {
-    dispatch(addItemToCart(item));
+    dispatch(addItemFromFavoriteToCart(prod));
     handleCloseModal();
-    dispatch(removeItemFromFavorite(item.id));
+    dispatch(removeItemFromFavorite(prod.id));
     dispatch(toggleModalCart(true));
   };
 
-  // useEffect(() => {
-  //   if (showModalCart) {
-  //     // Переместите dispatch(toggleModalCart(true)) сюда, чтобы вызвать его после обновления состояния showModalCart
-  //     dispatch(toggleModalCart(true));
-  //   }
-  // }, [showModalCart, dispatch]);
-  
 
   return (
     <>
@@ -63,9 +52,9 @@ const SizeSelection = ({ item, setModalAddToCart }) => {
         <div className={cl.itemAddToCart}>
           <div className={cl.cardItem}>
             <div className={cl.imageItem}>
-              <img src={item.images[0]} alt={item.title} />
+              <img src={prod.images[0]} alt={prod.title} />
             </div>
-            <div className={cl.priceItem}>$ {item.price}</div>
+            <div className={cl.priceItem}>$ {prod.price}</div>
           </div>
           <button disabled={!isActiveSize} onClick={addToCartItem}>
             add to cart

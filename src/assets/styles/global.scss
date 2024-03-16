@@ -94,7 +94,12 @@ footer {
 
 //          Button
 button {
-  cursor: pointer !important;
+  cursor: pointer;
+}
+
+.button-dis:disabled {
+  opacity: 0.3;
+  cursor: not-allowed ;
 }
 
 //      Image Item
@@ -152,3 +157,28 @@ input[type="number"] {
 .body-no-scroll {
   overflow:hidden;
 }
+
+//      modal under svg
+.parrent-tooltip {
+  position: relative;
+  cursor: pointer;
+  .tooltip {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #696767;
+    color: #fff;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+    font-size: 10px;
+    width: 70px;
+    text-align: center;
+    pointer-events: none;
+  }
+  &:hover .tooltip {
+    opacity: 1;
+  }
+}
+

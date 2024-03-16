@@ -1,8 +1,16 @@
+.emptySectio {
+  color: #000;
+}
+
 .cart {
   color: black;
+  h4 {
+    font-weight:500;
+  }
 }
 .main {
   display: flex;
+  column-gap: 30px;
  
   .cards {
     flex: 65%;
@@ -14,4 +22,135 @@
 
 .item {
   display: flex;
+  flex-direction: column;
+  .itemInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    
+  }
+  .title {
+    width: 300px;
+    line-height: 20px;
+  }
+  .priceSubtotal {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    .price,
+    .subTotal {
+      display: flex;
+      flex-direction: column;
+      padding-left: 26px;
+      span {
+        line-height: 20px;
+      }
+    }
+    .subTotal {
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+}
+
+.buttonEmpty {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    border-bottom: 1px solid #000;
+    padding: 0;
+    transition: all .3s ease;
+    margin-bottom: 20px;
+  }
+  button:hover {
+    color: var(--orange);
+    border-bottom: 1px solid var(--orange);
+    transition: all .3s ease;
+  }
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  h5 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 28px;
+    letter-spacing: 2px;
+    margin: 25px 0;
+  }
+  .accordion {
+    display: flex;
+    column-gap: 15px;
+    input {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      padding-top: 20px;
+    }
+    .butApply {
+      flex: 40%;
+      text-align: center;
+      .buttonActive {
+        background: #000;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 10px 30px;
+        &:hover {
+          opacity: .6;
+        }
+      }
+    }
+  }
+  .cupon,
+  .subtotalTax,
+  .shippingPrice,
+  .orderTotal {
+    display: flex;
+    justify-content: space-between;
+  }
+  .cupon{
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  .subtotalTax {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  .subtotalTax,
+  .shippingPrice {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 20px 0;
+  }
+  .orderTotal {
+    font-weight: 600;
+    margin: 20px 0;
+  }
+  .proceedButton {
+    width: 100%;
+    text-align: center;
+    background: #000;
+    margin-bottom: 20px;
+    cursor: pointer;
+    &:hover {
+      opacity: .7;
+    }
+    button {
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      padding: 10px 0;
+      
+    }
+    
+  }
+  .info {
+    h3{
+      margin: 0;
+      line-height: 40px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
 }

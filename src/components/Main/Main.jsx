@@ -15,26 +15,15 @@ const Main = () => {
 
   const handleChange = ({ target: { value } }) => {
     setSearchValue(value);
-    // setIsModalOpen(value !== "");
+    
   };
 
   const handleReset = () => {
     setSearchValue("");
-    // setIsModalOpen(false);
+    
   };
 
-// const handleClickOutsideModal = (event) => {
-//   if(modalRef.current && !modalRef.current.contains(event.target)) {
-//     setIsModalOpen(false);
-//   }
-// }
 
-// useEffect(() => {
-//   document.addEventListener('mousedown', handleClickOutsideModal);
-//   return () => {
-//     document.removeEventListener('mousedown', handleClickOutsideModal);
-//   }
-// },[])
 
   return (
     <section className={cl.main}>

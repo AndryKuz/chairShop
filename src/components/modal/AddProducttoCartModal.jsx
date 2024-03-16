@@ -13,7 +13,7 @@ import ProductController from "../common/ProductController";
 const AddProductToCart = ({ classButton }) => {
   const dispatch = useDispatch();
   const { cart, showModalCart } = useSelector((state) => state.modal);
-
+console.log(cart);
   const removeItem = (id) => {
     dispatch(removeItemFromCart(id));
   };
@@ -55,11 +55,12 @@ const AddProductToCart = ({ classButton }) => {
                       <img src={images[0]} alt={title} />
                     </div>
                     <div className={cl.info}>
+
                       <div className={cl.titleProduct}>{title}</div>
                       <div className={cl.sizeModal}>size: {size}</div>
                       <div className={cl.priceModal}>${price}</div>
                       <div className={cl.manageProduct}>
-                        <ProductController prod={prod} />
+                        <ProductController prod={prod} sourceComponent={'addProduct'}/>
                         <div
                           className={cl.deleteProduct}
                           onClick={() => handleDeleteItem(prod.id)}

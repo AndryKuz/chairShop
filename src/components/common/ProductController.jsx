@@ -1,12 +1,17 @@
 import { useDispatch } from "react-redux";
 import ButtonDinamic from "../buttons/ButtonDinamic";
 import cl from "./ProductController.module.scss";
-import { addItemToCart } from "../modal/modalSlice";
+import { addItemToCart, addItemToFavorite } from "../modal/modalSlice";
 
-const ProductController = ({ prod }) => {
+const ProductController = ({ prod, sourceComponent }) => {
   const dispatch = useDispatch();
   const changeQuantity = (item, quantity) => {
-    dispatch(addItemToCart({ ...item, quantity }));
+    if(sourceComponent === 'addProduct') {
+      dispatch(addItemToCart({ ...item, quantity }));
+
+    } else if (sourceComponent === 'wishlist') {
+      dispatch(addItemToFavorite({...item, quantity}))
+    }
     
   };
   return (

@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addItemToCart,
   addItemToFavorite,
-  removeItemFromFavorite,
   toggleModalCart,
 } from "../modal/modalSlice";
 
@@ -23,7 +22,7 @@ const Product = (item) => {
   const dispatch = useDispatch();
   const { title, images, price, description } = item;
 
-  const { showModalFavorite, showModalCart, favorite } = useSelector(
+  const { showModalFavorite, showModalCart } = useSelector(
     (state) => state.modal
   );
 
@@ -46,6 +45,8 @@ const Product = (item) => {
       document.body.classList.remove("body-no-scroll");
     };
   }, [showModalCart]);
+  
+
   
 
   const addToCart = () => {

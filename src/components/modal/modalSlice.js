@@ -41,14 +41,33 @@ export const modalSlice = createSlice({
         });
         state.showModalFavorite = false;
       } else {
-        newItem.push({ ...payload, quantity: 1 });
+        newItem.push({ ...payload, quantity: payload.quantity || 1 });
         state.showModalFavorite = true;
       }
 
       state.favorite = newItem;
     },
+    addItemFromFavoriteToCart: (state, {payload}) => {
+      let newItem = [...state.cart];
+
+      const findId = state.cart.find(({id}) => id === payload.id);
+
+      if(findId) {
+        newItem = newItem.map((item) => {
+          return (item.id === payload.id)
+          ? {...item, quantity: item.quantity + payload.quantity }
+          : item
+        })
+      } else {
+        newItem = [...newItem, {...payload}]
+      }
+      state.cart = newItem;
+    },
     removeItemFromFavorite: (state, { payload }) => {
       state.favorite = state.favorite.filter(({id}) =>  id !== payload);
+    },
+    clearArrayCart: (state) => {
+      state.cart = [];
     },
     clearArrayFavorite: (state) => {
       state.favorite = [];
@@ -74,7 +93,9 @@ export const {
   removeItemFromCart,
   toggleModalCart,
   toggleModalFavorite,
+  clearArrayCart,
   clearArrayFavorite,
+  addItemFromFavoriteToCart,
 
 } = modalSlice.actions;
 
