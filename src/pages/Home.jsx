@@ -1,10 +1,9 @@
 import Main from "../components/Main/Main";
 import AboutUs from "../components/AboutUs/AboutUs";
-import Products from "../components/Products/Products";
 import { useSelector } from "react-redux";
-import { useGetProductQuery } from "../features/api/apiSlice";
 import Categories from "../components/Categories/Categories";
 import cl from "../assets/styles/Home.module.scss";
+import Slider from "../components/Carousel/Slider";
 
 const Home = () => {
   const { list } = useSelector((state) => state.categories);
@@ -22,9 +21,9 @@ const Home = () => {
               <div className={cl.category}>
                 <Categories category={list} />
               </div>
+              <Slider/>
             </div>
           </div>
-          <Products/>
         </div>
       </section>
     </>

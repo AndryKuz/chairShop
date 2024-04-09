@@ -13,9 +13,6 @@ export const getCategory = createAsyncThunk(
     }
   );
   
-
-
-
 export const categoriesSlice = createSlice({
   name: "categories",
   initialState: {
@@ -40,15 +37,3 @@ export const categoriesSlice = createSlice({
 
 export default categoriesSlice.reducer;
 
-// export const categoriesSlice = createApi({
-//     reducerPath: 'categoriesApi',
-//     baseQuery: fetchBaseQuery({baseUrl: BASE_URL}),
-//     endpoints: (builder) => ({
-//         getCategories: builder.query({
-//             query: () => `/categories`,
-//         }),
-//     }),
-
-// });
-
-// export const { useGetCategoriesQuery } = categoriesSlice;

@@ -8,14 +8,17 @@ import AppRoutes from "../Routes/AppRoutes";
 import UserForm from "../User/UserForm";
 import { useEffect } from "react";
 import { getCategory } from "../../features/categories/categoriesSlice";
+import {getProducts} from '../../features/products/productSlice'
 
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch (getCategory())
+    dispatch (getCategory());
+    dispatch(getProducts());
   }, [dispatch])
+
 
 
   return (

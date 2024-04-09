@@ -1,0 +1,55 @@
+.header {
+    position:relative;
+    width:100%;
+    text-align: left;
+    margin-bottom: 20px;
+    padding: 0;
+    font-weight: 600;
+   
+    .arrowAccordion {
+        position: absolute;
+        top: 50%;
+        right: 0px;
+        transform: translateY(-50%);
+        width: 20px;
+        height: auto;
+        transition: transform 0.2s ease;
+    }
+    .activeArrowAccordion {
+      transform: translateY(-50%) rotate(180deg);
+      
+    }
+}
+
+.collapse {
+    height: 0;
+    overflow: hidden;
+    transition: height .3s ease;
+}
+
+.body {
+    display: flex;
+    column-gap: 15px;
+    input {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      padding-top: 20px;
+    }
+    .butApply {
+      flex: 40%;
+      text-align: center;
+      .buttonActive {
+        background: #000;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        padding: 10px 30px;
+        &:hover {
+          opacity: .6;
+        }
+      }
+    }
+}
+.emptyPlaceholder {
+  color:red;
+}
+

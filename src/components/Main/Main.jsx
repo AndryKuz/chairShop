@@ -13,14 +13,23 @@ const Main = () => {
   const { data, isLoading } = useGetProductsQuery({ title: searchValue });
 
 
-  const handleChange = ({ target: { value } }) => {
-    setSearchValue(value);
+  const handleFocus = () => {
+    setIsModalOpen(true);
+
+  }
+  const handleBlur = () => {
+    setTimeout(() => {  // костыль на закрытие модального окна с результатом поиска при клике на любом другом месте кроме инпута
+      setIsModalOpen(false);
+    }, 500)
     
+
+  }
+  const handleChange = ({ target: { value } }) => {
+    setSearchValue(isModalOpen ? value : '');
   };
 
   const handleReset = () => {
     setSearchValue("");
-    
   };
 
 
@@ -44,11 +53,13 @@ const Main = () => {
             <div className={cl.input}>
               <input
                 type="text"
-                placeholder="Search furniture"
+                placeholder="Search..."
                 name="search"
                 autoComplete="off"
                 value={searchValue}
                 onChange={handleChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
               />
             </div>
             <div className={cl.search}>
@@ -57,7 +68,7 @@ const Main = () => {
             <div className={cl.resetSearch}>
               <TiDeleteOutline onClick={handleReset}/>
             </div>
-            {searchValue && (
+            {isModalOpen && searchValue && (
               <div className={cl.modalSearch} ref={modalRef}>
                 {isLoading
                   ? "loading"

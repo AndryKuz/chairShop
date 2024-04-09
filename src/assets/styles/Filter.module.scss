@@ -76,8 +76,17 @@
   }
 }
 
-.button {
+.buttonReset {
   background-color: #000;
   border-radius: 5px;
+  color:#fff;
+  padding:5px;
+  transition: all .2s ease;
+  &:hover {
+   letter-spacing: .5px;
+   font-weight: 600;
+   transition: all .2s ease;
+  }
+
 }
 

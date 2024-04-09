@@ -6,18 +6,19 @@ import ProductController from "../components/common/ProductController";
 import { useState } from "react";
 import ModalCenter from "../components/modal/ModalCenter";
 import { sumBy } from "lodash";
-import { MdKeyboardArrowDown} from "react-icons/md";
+
 import {
   addItemToFavorite,
   removeItemFromCart,
 } from "../components/modal/modalSlice";
+import Accordion from "../components/Accordion/Accordion";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.modal);
   const [isVisibleModal, setIsVisibleModal] = useState("");
   const [actionType, setActionType] = useState("");
-  const [valueInput, setValueInput] = useState('');
+ 
 
   const showModal = (type) => {
     setActionType(type);
@@ -40,9 +41,7 @@ const Cart = () => {
     deleteItem(prod.id);
   };
 
-  const handleChange = ({target: {value}}) => {
-    setValueInput(value);
-  }
+  
 
   return (
     <>
@@ -112,26 +111,9 @@ const Cart = () => {
               </div>
               <div className={cl.summary}>
                 <div className={cl.cupon}>
-                  <div>coupon cod</div>
-                  <div>
-                    <MdKeyboardArrowDown />
-                  </div>
+                  <Accordion/>
                 </div>
-                <div className={cl.accordion}>
-                  <div>
-                    <input 
-                    type="text"
-                    name="cupon"
-                    placeholder="Cupon code*"
-                    value={valueInput}
-                    autoComplete="off"
-                    onChange={handleChange} />
-                  </div>
-                  <div className={cl.butApply}>
-                    <button  className={`button-dis ${cl.buttonActive}`} disabled={!valueInput}>Apply</button>
-                  </div>
-                  
-                </div>
+                
                 <h5>summary</h5>
                 <div className={cl.subtotalTax}>
                   <div>Subtotal (incl. tax)</div>

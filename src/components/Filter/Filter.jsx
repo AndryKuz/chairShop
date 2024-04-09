@@ -92,7 +92,7 @@ const Filter = ({
             <TiDeleteOutline />
           </div>
         </div>
-        <button  className={cl.button} onClick={handleResetAll}>Rese all filter</button>
+        <button  className={cl.buttonReset} onClick={handleResetAll}>Reset all filter</button>
 
         <button type="submit" hidden />
       </form>

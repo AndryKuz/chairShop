@@ -7,7 +7,8 @@ import { ROUTES } from "../utils/routes";
 const SingleProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data, isLoading, isFetching, isError } = useGetProductQuery({ id });
+  const { data, isError, isSuccess } = useGetProductQuery({ id });
+
 
   useEffect(() => {
     if (isError) {
@@ -19,7 +20,13 @@ const SingleProduct = () => {
     if (!data) return;
   }, []);
 
-  return !data ? (
+  useEffect(() => {
+    if(!data) return;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [data])
+
+  return !isSuccess ? (
     <section>Loading...</section>
   ) : (
     <>

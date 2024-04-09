@@ -3,6 +3,9 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.nowrap {
+  flex-wrap: nowrap;
+}
 
 .item {
   display: flex;

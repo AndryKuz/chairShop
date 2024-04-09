@@ -44,10 +44,15 @@ const SingleCategory = () => {
   useEffect(() => {
     if (!id || !list.length) return;
 
+    window.scrollTo({top:0, behavior:"smooth"});
     const categoryName = list.find((item) => item.id === Number(id));
 
     setCat(categoryName);
   }, [id, list]);
+
+  useEffect(() => {
+
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -105,9 +110,9 @@ const SingleCategory = () => {
             {isLoading ? (
               <div className={cl.loadProduct}>Loading....</div>
             ) : !isSuccess || !data.length ? (
-              <div>
+              <div className='no-result'>
                 <span>no result</span>
-                <button onClick={handleResetAll}>Reset</button>
+                <button onClick={handleResetAll} className={cl.buttonReset}>Reset</button>
               </div>
             ) : (
               <Card products={data} />
