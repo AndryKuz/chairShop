@@ -5,7 +5,10 @@ import { pluginSvgr } from '@rsbuild/plugin-svgr';
 
 export default defineConfig({
   plugins: [pluginReact(),pluginSass(),pluginSvgr({ mixedImport: true }) ],
-  html: {
-    template: './public/index.html',
+  output: {
+    distPath: {
+      root: "dist",
+    },
+    assetPrefix: '/chairShop/',
   },
 });
