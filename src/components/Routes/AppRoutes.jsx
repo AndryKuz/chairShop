@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import { ROUTES } from "../../utils/routes";
 
@@ -21,7 +21,7 @@ const AppRoutes = () => {
       <Route path={ROUTES.CART} element={<Cart/>}/>
       <Route path={ROUTES.CATEGORY} element={<SingleCategory/>}/>
       <Route path={ROUTES.WISHLIST} element={<Wishlist/>}/>
-      <Route path="*" element={<NotFound/>}/>
+      <Route path="*" element={<Navigate to="/" replace />} />
       
     </Routes>
   );
