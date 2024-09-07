@@ -2,12 +2,12 @@ export const aboutData = [
     {
       id:1,
       title: "Luxury facilities",
-      text: "The advantage of hiring a workspace with us is that givees you comfortable service and all-around facilities.",
+      text: "The advantage of hiring a workspace with us is that gives you comfortable service and all-around facilities.",
     },
     {
       id:2,
       title: "Affordable Price",
-      text: "You can get a workspace of the highst quality at an affordable price and still enjoy the facilities that are oly here.",
+      text: "You can get a workspace of the highs quality at an affordable price and still enjoy the facilities that are oly here.",
     },
     {
       id:3,
